@@ -1,0 +1,20 @@
+<!--Launch file to start rviz + simulated robot + joy2twist + joy.bag-->
+<launch>
+	<node pkg = "rviz" name = "my_rviz" type = "rviz" args = "-d$(find rbx1_nav)/sim.rviz">
+	</node>
+	<!--include file = "$(find rbx1_bringup)/launch/fake_turtlebot.launch"/-->
+	<!--joy node-->
+	<node respawn = "true" pkg = "joy" type = "joy_node" name ="turtle_joy">
+		<param name = "dev" type = "string" value= "/dev/input/js0"/>
+		<param name = "deadzone" value = "0.12"/>
+	</node>
+
+	<!--Axes-->
+	<param name = "axis_linear" value = "1" type = "int"/>
+	<param name = "axis_angular" value = "0" type = "int"/>
+	<param name = "scale_linear" value = "2" type = "double"/>
+	<param name = "scale_angular" value = "2" type = "double"/>
+
+	<node pkg = "joy2twist" name = "cmd_vel" type = "teleop_turtle_joy">
+	</node>
+</launch>

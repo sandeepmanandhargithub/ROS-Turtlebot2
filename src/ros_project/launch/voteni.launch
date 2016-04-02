@@ -1,0 +1,12 @@
+<launch>
+
+<node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
+
+<include file="$(find turtlebot_le2i)/launch/remap_rplidar_minimal.launch"/> 
+<include file="$(find rbx1_nav)/launch/tb_demo_amcl.launch" />
+  	<arg name="map" value="my_map.yaml" />
+<include file="$(find rbx2_vision)/launch/openni_node.launch" />
+	<arg name="publish_tf" value="false" />
+
+
+</launch>

@@ -1,0 +1,18 @@
+<!-- Launch file to start rviz + real robot + joy2twist + joy node -->
+<launch>
+<include file="$(find turtlebot_rviz_launchers)/launch/view_robot.launch" />
+<!-- joy node -->
+<node respawn="true" pkg="joy" type="joy_node" name="turtle_joy" >
+<param name="dev" type="string" value="/dev/input/js0" />
+<param name="deadzone" value="0" />
+<param name = "autorepeat_rate" value = "2"/>
+</node>
+<!-- Axes -->
+<!-- <param name="axis_linear" value="3" type="int"/>
+<param name="axis_angular" value="2" type="int"/>
+<param name="scale_linear" value="0.25" type="double"/>
+<param name="scale_angular" value="0.75" type="double"/> -->
+<node pkg="joy2twist" name="timedoutandback" type="timedoutandback.py">
+<remap from="cmd_vel" to="cmd_vel_mux/input/teleop"/>
+</node>
+</launch>

@@ -1,0 +1,23 @@
+<!--Launch file to start rviz + simulated robot + joy2twist + joy.bag-->
+<launch>
+	<!-- rviz -->
+	<node pkg="rviz" name="my_rviz" type="rviz" args="-d$(find rbx1_nav)/sim.rviz">
+	</node>
+
+	<!-- arbotix simulator for turtlebot -->
+	<include file="$(find rbx1_bringup)/launch/fake_turtlebot.launch"/>
+
+	<!-- bag file -->
+	<node pkg="rosbag" name="rosbag" type="play" args="--loop $(find joy2twist)/bag/joy.bag">
+	</node>
+
+	<!-- Axes -->
+	<param name="axis_linear" value="3" type="int"/>
+	<param name="axis_angular" value="2" type="int"/>
+	<param name="axis_linear" value="0.3" type="double"/>
+	<param name="axis_angular" value="0.8" type="double"/>
+
+	<node pkg="joy2twist" name="myjoystick2twist" type="teleop_turtle_joy">
+	</node>
+
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+
+<node pkg="face_recognition" name="face_recognition" type="Fserver" args="_confidence_value:=0.8"/>
+
+<!-- <node pkg="smach_viewer" name="smach_viewer" type="smach_viewer.py"/> -->
+
+<!-- <node pkg="rqt_tf_tree" name="rqt_tf_tree" type="rqt_tf_tree"/> -->
+
+<node pkg="rviz" name="rviz" type="rviz" args="-d $(find rbx1_nav)/nav_test.rviz"/>
+
+<include file="$(find rbx2_ar_tags)/launch/ar_50_mapbase.launch" />
+
+</launch>

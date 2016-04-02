@@ -1,0 +1,5 @@
+<launch>
+<!-- Launch minimal.launch -->
+<remap from="cmd_vel_mux/input/teleop" to="cmd_vel" />
+<include file="$(find turtlebot_bringup)/launch/minimal.launch"/>
+</launch>
